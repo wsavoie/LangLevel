@@ -7,7 +7,7 @@ def window():
     win = QMainWindow()
     xpos,ypos,width,height= [200,200,300,300]
     win.setGeometry(xpos,ypos,width,height)
-    win.setWindowTitle("I'm totally not gay")
+    win.setWindowTitle("hello world")
 
     label= QtWidgets.QLabel(win)
     label.setText("my first label")
