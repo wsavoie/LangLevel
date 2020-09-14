@@ -14,7 +14,7 @@ import gzip
 import asyncio as aio
 import importlib
 import pickle5 as pickle
-
+import pyperclip
 import config 
 import ankiF
 import wanikaniF as wk

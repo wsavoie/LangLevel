@@ -6,22 +6,7 @@ from PyQt5.QtCore import QSize
 import sys
 
 
-# def window():
-#     app= QApplication(sys.argv)
-#     win = QMainWindow()
-#     xpos,ypos,width,height= [200,200,300,300]
-#     win.setGeometry(xpos,ypos,width,height)
-#     win.setWindowTitle("hello world")
 
-#     label= QtWidgets.QLabel(win)
-#     label.setText("my first label")
-    
-#     app_icon = QtGui.QIcon()
-#     app_icon.addFile('test.png', QtCore.QSize(20,20))
-#     app.setWindowIcon(app_icon)
-#     app.set
-#     win.show()
-#     sys.exit(app.exec_())
 
 class MainWindow(QMainWindow):
     """
@@ -72,7 +57,8 @@ class MainWindow(QMainWindow):
         tray_menu.addAction(quit_action)
         self.tray_icon.setContextMenu(tray_menu)
         self.tray_icon.show()
- 
+        
+    
     # Override closeEvent, to intercept the window closing event
     # The window will be closed only if there is no check mark in the check box
     def closeEvent(self, event):
@@ -91,4 +77,4 @@ app = QApplication(sys.argv)
 mw = MainWindow()
 mw.show()
 sys.exit(app.exec())
-window()
+# window()

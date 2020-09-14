@@ -1,0 +1,13 @@
+QTstuff todo
+improve the names of all the buttons, icons, etc for 
+
+add global shortcut to translate
+
+determine how to get 
+
+
+extraFiles
+Get and format language frequency lists
+
+create a menu dropdown menu to select language
+another shows up to select morphemizer
