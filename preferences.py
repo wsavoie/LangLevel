@@ -5,11 +5,12 @@ import preferences
 import os
      
 
+
 def write_prefs():
-    par = os.path.split(PREFS_PATH)[0]
-    if not os.path.exists(par):
-            os.makedirs(par)
-    with open(PREFS_PATH, 'w') as configfile:
+    # par = os.path.split(PREFS_PATH)[0]
+    # if not os.path.exists(par):
+    #         os.makedirs(par)
+    with open(PREFS_FILE, 'w') as configfile:
         prefs.write(configfile)
 
 def set_default_prefs():
@@ -21,14 +22,17 @@ def add_comments(section,key):
     # for list to loop through and add comments to the database file for readability
     # make sure to add # before matching values in the 
 def init():
+
     prefs = configparser.ConfigParser()
-    prefs.read(PREFS_PATH)
-    if(len(prefs)==1): #if it is blank
-        set_default_prefs()
+    prefs.read(PREFS_FILE)
+    # print('hi items len:',len(prefs['DEFAULT']))
+    if(len(prefs['DEFAULT'])<1): #if it is blank
+        prefs.read_dict(default_settings)
+        with open(PREFS_FILE, 'w') as configfile:
+            prefs.write(configfile)
+        print('write file')
     return prefs
-PREFS_FOLDER='prefs'
-PREFS_FILE='prefs.cfg'
-PREFS_PATH= os.path.join(PREFS_FOLDER,PREFS_FILE)
+
 
 
 comments= {
@@ -42,40 +46,66 @@ comments= {
         'currmophemizer' : 'name of currently selected morphemizer'
 }
         
+
+
+
 default_settings = {
-    'LOCATIONS'         : {
+    'DEFAULT'         : {
     'projectfold'       : os.getcwd(), # should I use relative dir here?:}
-    'dbdir'             : 'C:\\Users\\WS\AppData\\Roaming\\Anki2\\main\\dbs', #should I make a folder to place them in the project?
-    'outputdir'         : '%(projectfold)s\\output',
-    'morphemizerfold'   : '%(projectfold)s\\deps'
-    },
-    
-    'DATABASES'         : {
-    'frequencylist'     : '%(dbdir)s\\frequency.txt',
+    'ankipath'          : 'C:\\Users\\WS\AppData\\Roaming\\Anki2',
+    'dbdir'             : '%(ankipath)s\\main\\dbs', #should I make a folder to place them in the project?
+    'outputpath'        : '%(projectfold)s\\output',
+    'outfreq'           : '%(outputdir)s\\frequency.txt',
+    'morphemizerfold'   : '%(projectfold)s\\deps',
+    'frequencylist'     : '%(dbdir)s\\frequencyM.txt',
     'knownmorphs'       : '%(dbdir)s\\known.db',
     'externalmorphs'    : '%(dbdir)s\\external.db',
-    'currmophemizer'    : 'mecab'    
-    },
+    'inputpath'         : 'C:\\Users\\WS\\Desktop\\blah\\kiki\\chbk1\\ch07',
+    'morphman_name'     : 'MM', #usually is 900801631
 
-    'VALUES'            : {
+    #numerical values
     'min_master_freq'   : '0',
-    'read_target'       : '98'   
-    },
-    
-    'CHECKBOXES'        : {
-    'save_study_plan'   :'1',
-    'save_word_report'  :'1',
-    'save_freqency_list':'1'    
+    'read_target'       : '98',
+    'SourceScorePower'  : '2.0',
+    'SourceScoreMultiplier' : '60.0',
+
+    #checkboxes   inputtype 0   minimized 0
+    'inputtype'         : '1', #clipboard = 0,  from file= 1 ;  # can be path,clipboard, #path splits into file or folder in code
+    'save_study_plan'   : '1',
+    'save_word_report'  : '1',
+    'save_freqency_list': '1',
+    'proper_nouns_known': '1',
+    'fill_all_morphs_in_plan' : '1', # i think this should be 1
+    'minimized'         : '0',
+    'open_minimized'    : '0',
+    'closetotray'       : '1',
+        #special options checkboxes
+    'ignorebracketcontents' : '1',
+    'ignoreroundbracketcontents' : '1',
+    'replacerules'      : '1', # TODO dont know what this is 
+    'ignoregrammarposition' : '0',
+
+    #morphemizer 
+    'currmophemizer'    : 'MecabMorphemizer',
+    'morphemizerlang'   : 'Japanese',
+
+    #prefs external media
+    'wk_api_key'        : '',
+    'duolingo_user'     : '',
+    'duolingo_pass'     : ''
+
+
     }
 }
+   
+# PREFS_FOLDER='prefs'
+PREFS_FILE='prefs.cfg'
+# PREFS_PATH= os.path.join(PREFS_FOLDER,PREFS_FILE)
 
 if 'prefs' not in locals():
     prefs=init()
-
+p=prefs['DEFAULT']
    
-
-   
-
 
 # for key in config['LOCATIONS']:
 #     add_comments('LOCATIONS')
@@ -101,7 +131,7 @@ if 'prefs' not in locals():
 #         self.PREFS_FILE='prefs.cfg'
 #         self.PREFS_PATH= os.path.join(self.PREFS_FOLDER,self.PREFS_FILE)
         
-#         # TODO if empty perform set defaults 
+
 
 
 #         self.comments= {
@@ -169,3 +199,30 @@ if 'prefs' not in locals():
 # if __name__ == "__main__":
 #     prefs=manabuPrefs()
    
+
+#    default_settings = {
+#     'LOCATIONS'         : {
+#     'projectfold'       : os.getcwd(), # should I use relative dir here?:}
+#     'dbdir'             : 'C:\\Users\\WS\AppData\\Roaming\\Anki2\\main\\dbs', #should I make a folder to place them in the project?
+#     'outputdir'         : '%(projectfold)s\\output',
+#     'morphemizerfold'   : '%(projectfold)s\\deps'
+#     },
+    
+#     'DATABASES'         : {
+#     'frequencylist'     : '%(dbdir)s\\frequency.txt',
+#     'knownmorphs'       : '%(dbdir)s\\known.db',
+#     'externalmorphs'    : '%(dbdir)s\\external.db',
+#     'currmophemizer'    : 'mecab'    
+#     },
+
+#     'VALUES'            : {
+#     'min_master_freq'   : '0',
+#     'read_target'       : '98'   
+#     },
+    
+#     'CHECKBOXES'        : {
+#     'save_study_plan'   :'1',
+#     'save_word_report'  :'1',
+#     'save_freqency_list':'1'    
+#     }
+# }
