@@ -48,11 +48,10 @@ comments= {
         
 
 
-
 default_settings = {
     'DEFAULT'         : {
     'projectfold'       : os.getcwd(), # should I use relative dir here?:}
-    'ankipath'          : 'C:\\Users\\WS\AppData\\Roaming\\Anki2',
+    'ankipath'          : 'C:\\Users\\WS\\AppData\\Roaming\\Anki2',
     'dbdir'             : '%(ankipath)s\\main\\dbs', #should I make a folder to place them in the project?
     'outputpath'        : '%(projectfold)s\\output',
     'outfreq'           : '%(outputdir)s\\frequency.txt',
@@ -62,7 +61,7 @@ default_settings = {
     'externalmorphs'    : '%(dbdir)s\\external.db',
     'inputpath'         : 'C:\\Users\\WS\\Desktop\\blah\\kiki\\chbk1\\ch07',
     'morphman_name'     : 'MM', #usually is 900801631
-
+    
     #numerical values
     'min_master_freq'   : '0',
     'read_target'       : '98',
@@ -97,7 +96,7 @@ default_settings = {
 
     }
 }
-   
+  
 # PREFS_FOLDER='prefs'
 PREFS_FILE='prefs.cfg'
 # PREFS_PATH= os.path.join(PREFS_FOLDER,PREFS_FILE)

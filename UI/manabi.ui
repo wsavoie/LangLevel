@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>800</width>
-    <height>600</height>
+    <width>1018</width>
+    <height>742</height>
    </rect>
   </property>
   <property name="cursor">
@@ -186,16 +186,6 @@
      <string>Morphemizer</string>
     </property>
    </widget>
-   <widget class="QListWidget" name="listWidget">
-    <property name="geometry">
-     <rect>
-      <x>420</x>
-      <y>160</y>
-      <width>256</width>
-      <height>192</height>
-     </rect>
-    </property>
-   </widget>
    <widget class="QWidget" name="layoutWidget">
     <property name="geometry">
      <rect>
@@ -263,13 +253,39 @@
      <bool>true</bool>
     </property>
    </widget>
+   <widget class="QPushButton" name="pushButton">
+    <property name="geometry">
+     <rect>
+      <x>540</x>
+      <y>320</y>
+      <width>111</width>
+      <height>23</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>update databases</string>
+    </property>
+   </widget>
+   <widget class="QCheckBox" name="checkBox">
+    <property name="geometry">
+     <rect>
+      <x>530</x>
+      <y>200</y>
+      <width>131</width>
+      <height>17</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>analyze from clipboard</string>
+    </property>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>800</width>
+     <width>1018</width>
      <height>21</height>
     </rect>
    </property>
@@ -296,7 +312,6 @@
    <addaction name="menuTool"/>
    <addaction name="menuHelp"/>
   </widget>
-  <widget class="QStatusBar" name="statusbar"/>
   <action name="actionProperties">
    <property name="text">
     <string>Properties</string>
@@ -330,12 +345,12 @@
    <slot>close()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>399</x>
-     <y>299</y>
+     <x>93</x>
+     <y>36</y>
     </hint>
     <hint type="destinationlabel">
-     <x>399</x>
-     <y>299</y>
+     <x>93</x>
+     <y>36</y>
     </hint>
    </hints>
   </connection>
