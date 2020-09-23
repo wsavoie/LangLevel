@@ -7,92 +7,70 @@
 # WARNING! All changes made in this file will be lost!
 
 
-from PyQt5 import QtCore, QtGui, QtWidgets, Qt
-from PyQt5.QtWidgets import QDialog
-import platform
-import sys
-
-#TODO fix this
-sys.path.append("..") # Adds higher directory to python modules path.
-from manabi import MainWindowUI
-# from .manabi import main
-# from PyQt5.QtCore import *
-# from PyQt5.QtGui import *
-# from PyQt5.QtWidgets import *
+from PyQt5 import QtCore, QtGui, QtWidgets
 
 
-#be careful will overwrite file
-#pyuic5 -x aboutWindow.ui -o aboutWindow_test.ui
-
-ver = 1.0
-# assert isinstance(MainWindowUI)
-class aboutDialog(QDialog):
-    def __init__(self,parent=None):
-        self.parent=parent
-        super(aboutDialog,self).__init__(self.parent)
-        self.setupUi()
-
-    def setupUi(self):
-        self.setObjectName("Dialog")
-        self.resize(562, 466)
-        # self.buttonBox = QtWidgets.QDialogButtonBox(self)
-        # self.buttonBox.setGeometry(QtCore.QRect(130, 390, 341, 32))
-        # self.buttonBox.setOrientation(QtCore.Qt.Horizontal)
-        # self.buttonBox.setStandardButtons(QtWidgets.QDialogButtonBox.Ok)
-        # self.buttonBox.setCenterButtons(True)
-        # self.buttonBox.setObjectName("buttonBox")
-        # self.buttonBox.clicked.connect(self.on_okay)
-        self.authorinfo = QtWidgets.QLabel(self)
+class Ui_Dialog(object):
+    def setupUi(self, Dialog):
+        Dialog.setObjectName("Dialog")
+        Dialog.resize(562, 466)
+        self.authorinfo = QtWidgets.QLabel(Dialog)
         self.authorinfo.setGeometry(QtCore.QRect(60, 320, 271, 111))
         self.authorinfo.setScaledContents(True)
         self.authorinfo.setWordWrap(False)
+        self.authorinfo.setTextInteractionFlags(QtCore.Qt.TextBrowserInteraction)
         self.authorinfo.setObjectName("authorinfo")
-        self.manabi_pic = QtWidgets.QLabel(self)
+        self.manabi_pic = QtWidgets.QLabel(Dialog)
         self.manabi_pic.setGeometry(QtCore.QRect(170, 30, 231, 111))
-        self.manabi_pic.setPixmap(QtGui.QPixmap("..//icons//manabi.png"))
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Ignored, QtWidgets.QSizePolicy.Ignored)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.manabi_pic.sizePolicy().hasHeightForWidth())
+        self.manabi_pic.setSizePolicy(sizePolicy)
+        self.manabi_pic.setText("")
+        self.manabi_pic.setPixmap(QtGui.QPixmap("../icons/manabi.png"))
         self.manabi_pic.setScaledContents(True)
         self.manabi_pic.setObjectName("manabi_pic")
-        self.programInfo = QtWidgets.QLabel(self)
+        self.programInfo = QtWidgets.QLabel(Dialog)
         self.programInfo.setGeometry(QtCore.QRect(60, 150, 471, 71))
         self.programInfo.setWordWrap(True)
+        self.programInfo.setTextInteractionFlags(QtCore.Qt.TextBrowserInteraction)
         self.programInfo.setObjectName("programInfo")
-        self.versioningInfo = QtWidgets.QLabel(self)
-        self.versioningInfo.setGeometry(QtCore.QRect(60, 260, 431, 16))
-        self.versioningInfo.setScaledContents(True)
-        self.versioningInfo.setObjectName("versioningInfo")
-
-        self.okbutton = QtWidgets.QPushButton(self)
+        self.okbutton = QtWidgets.QPushButton(Dialog)
         self.okbutton.setGeometry(QtCore.QRect(240, 410, 75, 23))
         self.okbutton.setAutoDefault(True)
         self.okbutton.setObjectName("okbutton")
-        self.okbutton.clicked.connect(self.on_okay)
+        self.versioningInfo = QtWidgets.QLabel(Dialog)
+        self.versioningInfo.setGeometry(QtCore.QRect(60, 255, 181, 51))
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Expanding)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.versioningInfo.sizePolicy().hasHeightForWidth())
+        self.versioningInfo.setSizePolicy(sizePolicy)
+        self.versioningInfo.setLineWidth(1)
+        self.versioningInfo.setScaledContents(True)
+        self.versioningInfo.setIndent(-4)
+        self.versioningInfo.setObjectName("versioningInfo")
 
-        self.retranslateUi()
-        QtCore.QMetaObject.connectSlotsByName(self)
-    def on_okay(self):
-        self.close()
-    def setParent(self, parent):
-        self.parent= parent
-    def retranslateUi(self):
-        
+        self.retranslateUi(Dialog)
+        self.okbutton.clicked.connect(Dialog.close)
+        QtCore.QMetaObject.connectSlotsByName(Dialog)
+
+    def retranslateUi(self, Dialog):
         _translate = QtCore.QCoreApplication.translate
-        self.setWindowTitle(_translate("Dialog", "Dialog"))
+        Dialog.setWindowTitle(_translate("Dialog", "Dialog"))
         self.authorinfo.setText(_translate("Dialog", "<html><head/><body><p>Written by: Will Savoie</p><p><a href=\"https://github.com/wsavoie/Manabi\"><span style=\" text-decoration: underline; color:#0000ff;\">Visit Website</span></a></p></body></html>"))
         self.programInfo.setText(_translate("Dialog", "<html><head/><body><p>Manabi is a language independent, document readability analyzer. It\'s free and open source. This program was heavily influenced by the Anki <a href=\"https://ankiweb.net/shared/info/900801631\"><span style=\" text-decoration: underline; color:#0000ff;\">MorphMan</span></a> addon </p><p>Not currently licensed, so don\'t steal it. I\'ll have to figure that out later</p></body></html>"))
-        self.versioningInfo.setText(_translate("Dialog", f"version info {ver} \n Python: {platform.python_version()} PyQt: {vars(Qt)['PYQT_VERSION_STR']}"))
         self.okbutton.setText(_translate("Dialog", "OK"))
         self.okbutton.setShortcut(_translate("Dialog", "Return"))
+        self.versioningInfo.setText(_translate("Dialog", "Version blah"))
 
 
 if __name__ == "__main__":
     import sys
     app = QtWidgets.QApplication(sys.argv)
-    ui = aboutDialog()
-    ui.show()
+    Dialog = QtWidgets.QDialog()
+    ui = Ui_Dialog()
+    ui.setupUi(Dialog)
+    Dialog.show()
     sys.exit(app.exec_())
-
-def lol():
-    print('im here')
-def main(mainwindow):
-    about = aboutDialog(mainwindow)
-    about.show()
