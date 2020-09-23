@@ -68,7 +68,7 @@ class Morpheme:
 
     def getGroupKey(self):
         # type: () -> str
-        if p.getboolean('ignoregrammarposition'):
+        if p['DEFAULT'].getboolean('ignoregrammarposition'):
             return '%s\t%s' % (self.norm, self.read)
         else:
             return '%s\t%s\t%s\t' % (self.norm, self.read, self.pos)
@@ -94,23 +94,23 @@ class MorphDBUnpickler(pickle.Unpickler):
     def find_class(self, cmodule, cname):
                 #return pickle.Unpickler.find_class(self, cmodule, cname)
         #TODO fix unpickling here
-        addonName=p['morphman_name']
+        addonName=p['DEFAULT']['morphman_name']
         return pickle.Unpickler.find_class(self, f'{addonName}.morph.morphemes', cname)
 
 square_brackets_regex = re.compile(r'\[[^\]]*\]')
 round_brackets_regex = re.compile(r'\([^)]*\)')
 
 def getMorphemes(morphemizer, expression, note_tags=None):
-    if p.getboolean('ignorebracketcontents'):
+    if p['DEFAULT'].getboolean('ignorebracketcontents'):
         if square_brackets_regex.search(expression):
             expression = square_brackets_regex.sub('', expression)
-    if p.getboolean('ignoreroundbracketcontents'):
+    if p['DEFAULT'].getboolean('ignoreroundbracketcontents'):
         if round_brackets_regex.search(expression):
             expression = round_brackets_regex.sub('', expression)
   
     # go through all replacement rules and search if a rule (which dictates a string to morpheme conversion) can be
     # applied
-    replace_rules = p.getboolean('replacerules')
+    replace_rules = p['DEFAULT'].getboolean('replacerules')
     if note_tags is not None and replace_rules is not None:
         note_tags_set = set(note_tags)
         for (filter_tags, regex, morphemes) in replace_rules:

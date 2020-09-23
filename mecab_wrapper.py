@@ -8,7 +8,6 @@ import sys
 from morphemes import Morpheme
 from util_external import memoize
 
-
 ####################################################################################################
 # Mecab Morphemizer
 ####################################################################################################
@@ -245,4 +244,3 @@ def fixReading(m):  # Morpheme -> IO Morpheme
         if len(n) == MECAB_NODE_LENGTH_IPADIC:
             m.read = n[MECAB_NODE_READING_INDEX].strip()
     return m
-

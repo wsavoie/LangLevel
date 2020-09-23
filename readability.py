@@ -1,14 +1,17 @@
-from preferences import p
-import pyperclip
-import operator
-from morphemizer import getAllMorphemizers,getMorphemizerByName
-from morphemes import Morpheme, MorphDb, getMorphemes, altIncludesMorpheme
-from anki.utils import stripHTML
-import os
-import io
-import re
 import csv
 import errno
+import io
+import operator
+import os
+import re
+
+import pyperclip
+from anki.utils import stripHTML
+
+from morphemes import MorphDb, Morpheme, altIncludesMorpheme, getMorphemes
+from morphemizer import getAllMorphemizers, getMorphemizerByName
+from preferences import p
+
 
 #TODO put these in a better place, perhaps inside class?
 def atoi(text):
@@ -36,15 +39,15 @@ class readClass():
 
         #import from ui
 
-        self.inputPath = p['inputpath']
+        self.inputPath = p['DEFAULT']['inputpath']
         #TODO make input a combo box of either clipboard or input path
         #TODO for now I will use an input path
-        self.min_master_freq= p.getint('min_master_freq')
-        self.read_target= p.getfloat('read_target')
-        self.knownDbPath= p['knownmorphs']
-        self.freq_path = p['frequencylist']
-        self.getMorphemes= getMorphemizerByName(p['currmophemizer'])  
-        self.outpath=p['outputpath']
+        self.min_master_freq= p['DEFAULT'].getint('min_master_freq')
+        self.read_target= p['DEFAULT'].getfloat('read_target')
+        self.knownDbPath= p['DEFAULT']['knownmorphs']
+        self.freq_path = p['DEFAULT']['frequencylist']
+        self.getMorphemes= getMorphemizerByName(p['DEFAULT']['currmophemizer'])  
+        self.outpath=p['DEFAULT']['outputpath']
 
 
         #while using this, make sure to close file after use
@@ -57,34 +60,34 @@ class readClass():
         self.tempFile.close()
 
     def onAnalyze(self):
-        self.morphemizer = getMorphemizerByName(p['currmophemizer'])
+        self.morphemizer = getMorphemizerByName(p['DEFAULT']['currmophemizer'])
         input_path = False # will set
         self.writeOutput('Using morphemizer: %s \n' % self.morphemizer.getDescription())
         debug_output = False
 
 
-        if p.getboolean('inputtype') and ~p.getboolean('minimized'): # only uses fold when not minimized and inputtype is checked
+        if p['DEFAULT'].getboolean('inputtype') and ~p['DEFAULT'].getboolean('minimized'): # only uses fold when not minimized and inputtype is checked
             #TODO if certain keypress, force analyze through clipboard 
-            input_path = p['inputpath']
-        minimum_master_frequency= p.getint('min_master_freq')
-        readability_target = p.getfloat('read_target')
-        master_freq_path = p['frequencylist']
-        known_words_path = p['knownmorphs']
-        ext_morphs      = p['externalmorphs']
+            input_path = p['DEFAULT']['inputpath']
+        minimum_master_frequency= p['DEFAULT'].getint('min_master_freq')
+        readability_target = p['DEFAULT'].getfloat('read_target')
+        master_freq_path = p['DEFAULT']['frequencylist']
+        known_words_path = p['DEFAULT']['knownmorphs']
+        ext_morphs      = p['DEFAULT']['externalmorphs']
     
-        output_path     = p['outputpath']
+        output_path     = p['DEFAULT']['outputpath']
         
-        save_frequency_list =  p.getboolean('save_freqency_list')
-        save_word_report =  p.getboolean('save_word_report')
-        save_study_plan = p.getboolean('save_study_plan')
+        save_frequency_list =  p['DEFAULT'].getboolean('save_freqency_list')
+        save_word_report =  p['DEFAULT'].getboolean('save_word_report')
+        save_study_plan = p['DEFAULT'].getboolean('save_study_plan')
 
 
-        source_score_multiplier = p.getfloat('SourceScoreMultiplier')
-        source_score_power = p.getfloat('SourceScorePower')
+        source_score_multiplier = p['DEFAULT'].getfloat('SourceScoreMultiplier')
+        source_score_power = p['DEFAULT'].getfloat('SourceScorePower')
 
 
-        proper_nouns_known = p.getboolean('ProperNounsAlreadyKnown')
-        fill_all_morphs_in_plan = p.getboolean('FillAllMorphsInStudyPlan')
+        proper_nouns_known = p['DEFAULT'].getboolean('ProperNounsAlreadyKnown')
+        fill_all_morphs_in_plan = p['DEFAULT'].getboolean('FillAllMorphsInStudyPlan')
 
 
         if not os.path.exists(output_path):

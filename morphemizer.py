@@ -10,7 +10,7 @@ from deps.jieba import posseg
 ####################################################################################################
 # Base Class
 ####################################################################################################
-
+#TODO add updated morphemizer
 class Morphemizer:
     def getMorphemesFromExpr(self, expression):
         # type: (str) -> [Morpheme]
