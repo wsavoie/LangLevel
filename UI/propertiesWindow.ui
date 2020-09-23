@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>Form</class>
- <widget class="QWidget" name="Form">
+ <class>Dialog</class>
+ <widget class="QDialog" name="Dialog">
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>483</width>
-    <height>504</height>
+    <width>479</width>
+    <height>500</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Form</string>
+   <string>Dialog</string>
   </property>
   <widget class="QTabWidget" name="tabWidget">
    <property name="geometry">
@@ -80,7 +80,11 @@
        </widget>
       </item>
       <item>
-       <widget class="QKeySequenceEdit" name="runShortcut"/>
+       <widget class="QKeySequenceEdit" name="runShortcut">
+        <property name="keySequence">
+         <string/>
+        </property>
+       </widget>
       </item>
      </layout>
     </widget>
@@ -92,6 +96,9 @@
        <width>151</width>
        <height>17</height>
       </rect>
+     </property>
+     <property name="statusTip">
+      <string>Proper nouns are counted as already readable</string>
      </property>
      <property name="text">
       <string>Treat proper nouns known</string>
@@ -167,14 +174,36 @@
     <widget class="QCheckBox" name="startMinimizedCheck">
      <property name="geometry">
       <rect>
-       <x>30</x>
+       <x>10</x>
        <y>270</y>
        <width>101</width>
        <height>17</height>
       </rect>
      </property>
+     <property name="toolTip">
+      <string>start the program minimized</string>
+     </property>
      <property name="text">
       <string>Start minimized</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_6">
+     <property name="geometry">
+      <rect>
+       <x>200</x>
+       <y>302</y>
+       <width>221</width>
+       <height>51</height>
+      </rect>
+     </property>
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Ignored" vsizetype="Ignored">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="text">
+      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:18pt;&quot;&gt;Set default button&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
      </property>
     </widget>
    </widget>
@@ -219,9 +248,9 @@
     <widget class="QWidget" name="horizontalLayoutWidget_3">
      <property name="geometry">
       <rect>
-       <x>230</x>
+       <x>250</x>
        <y>150</y>
-       <width>221</width>
+       <width>181</width>
        <height>31</height>
       </rect>
      </property>
@@ -343,12 +372,12 @@
        </widget>
       </item>
       <item>
-       <widget class="QLineEdit" name="frequencyFile">
+       <widget class="QLineEdit" name="frequencyPath">
         <property name="text">
          <string/>
         </property>
         <property name="placeholderText">
-         <string>master frequency path</string>
+         <string>Master frequency path</string>
         </property>
        </widget>
       </item>
@@ -377,7 +406,7 @@
       <rect>
        <x>50</x>
        <y>100</y>
-       <width>321</width>
+       <width>391</width>
        <height>43</height>
       </rect>
      </property>
@@ -408,6 +437,13 @@
         </property>
        </widget>
       </item>
+      <item>
+       <widget class="QPushButton" name="wk_conn">
+        <property name="text">
+         <string>Check Conn</string>
+        </property>
+       </widget>
+      </item>
      </layout>
     </widget>
     <widget class="QWidget" name="gridLayoutWidget">
@@ -415,7 +451,7 @@
       <rect>
        <x>50</x>
        <y>170</y>
-       <width>261</width>
+       <width>321</width>
        <height>61</height>
       </rect>
      </property>
@@ -436,6 +472,16 @@
         </property>
        </widget>
       </item>
+      <item row="0" column="0" rowspan="2">
+       <widget class="QCheckBox" name="duo_check">
+        <property name="text">
+         <string>Use Duolingo</string>
+        </property>
+        <property name="checked">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
       <item row="1" column="1">
        <widget class="QLineEdit" name="duo_pass">
         <property name="inputMask">
@@ -452,25 +498,79 @@
         </property>
        </widget>
       </item>
-      <item row="0" column="0" rowspan="2">
-       <widget class="QCheckBox" name="duo_check">
+      <item row="0" column="2" rowspan="2">
+       <widget class="QPushButton" name="duo_conn">
         <property name="text">
-         <string>Use Duolingo</string>
-        </property>
-        <property name="checked">
-         <bool>true</bool>
+         <string>Check Conn</string>
         </property>
        </widget>
       </item>
      </layout>
     </widget>
    </widget>
+   <widget class="QWidget" name="ankiTab">
+    <attribute name="title">
+     <string>Anki</string>
+    </attribute>
+    <widget class="QLabel" name="label_5">
+     <property name="geometry">
+      <rect>
+       <x>310</x>
+       <y>20</y>
+       <width>91</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Choose note type</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="connectToAnki">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>20</y>
+       <width>111</width>
+       <height>23</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Connect to anki</string>
+     </property>
+    </widget>
+    <widget class="QTableWidget" name="ankiNoteTable">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>100</y>
+       <width>256</width>
+       <height>192</height>
+      </rect>
+     </property>
+     <property name="rowCount">
+      <number>0</number>
+     </property>
+     <property name="columnCount">
+      <number>2</number>
+     </property>
+     <column>
+      <property name="text">
+       <string>Note Field</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>Inserted Value</string>
+      </property>
+     </column>
+    </widget>
+   </widget>
   </widget>
   <widget class="QDialogButtonBox" name="applyCancelButton">
    <property name="geometry">
     <rect>
-     <x>300</x>
-     <y>460</y>
+     <x>290</x>
+     <y>450</y>
      <width>156</width>
      <height>23</height>
     </rect>
@@ -485,8 +585,8 @@
   <widget class="QWidget" name="horizontalLayoutWidget_11">
    <property name="geometry">
     <rect>
-     <x>20</x>
-     <y>460</y>
+     <x>10</x>
+     <y>450</y>
      <width>151</width>
      <height>31</height>
     </rect>
@@ -522,70 +622,5 @@
   </widget>
  </widget>
  <resources/>
- <connections>
-  <connection>
-   <sender>wk_check</sender>
-   <signal>clicked(bool)</signal>
-   <receiver>wk_api_token</receiver>
-   <slot>setVisible(bool)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>106</x>
-     <y>153</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>268</x>
-     <y>152</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>applyCancelButton</sender>
-   <signal>rejected()</signal>
-   <receiver>Form</receiver>
-   <slot>close()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>377</x>
-     <y>471</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>241</x>
-     <y>251</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>duo_check</sender>
-   <signal>clicked(bool)</signal>
-   <receiver>duo_username</receiver>
-   <slot>setVisible(bool)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>105</x>
-     <y>231</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>237</x>
-     <y>216</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>duo_check</sender>
-   <signal>clicked(bool)</signal>
-   <receiver>duo_pass</receiver>
-   <slot>setVisible(bool)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>105</x>
-     <y>231</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>237</x>
-     <y>246</y>
-    </hint>
-   </hints>
-  </connection>
- </connections>
+ <connections/>
 </ui>

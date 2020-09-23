@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1018</width>
-    <height>742</height>
+    <width>776</width>
+    <height>605</height>
    </rect>
   </property>
   <property name="cursor">
@@ -59,7 +59,7 @@
      <string>Create Anki Deck</string>
     </property>
    </widget>
-   <widget class="QDoubleSpinBox" name="doubleSpinBox">
+   <widget class="QDoubleSpinBox" name="targetPercentSpin">
     <property name="geometry">
      <rect>
       <x>570</x>
@@ -117,7 +117,7 @@
      <string>Super Deck Name</string>
     </property>
    </widget>
-   <widget class="QLineEdit" name="MasterFreqEdit_2">
+   <widget class="QLineEdit" name="superDeckName">
     <property name="geometry">
      <rect>
       <x>150</x>
@@ -127,7 +127,7 @@
      </rect>
     </property>
    </widget>
-   <widget class="QLineEdit" name="MasterFreqEdit_3">
+   <widget class="QLineEdit" name="subDeckName">
     <property name="geometry">
      <rect>
       <x>150</x>
@@ -143,14 +143,14 @@
    <widget class="QLabel" name="label_5">
     <property name="geometry">
      <rect>
-      <x>40</x>
+      <x>60</x>
       <y>430</y>
       <width>91</width>
       <height>16</height>
      </rect>
     </property>
     <property name="text">
-     <string>Super Deck Name</string>
+     <string>Sub Deck Name</string>
     </property>
    </widget>
    <widget class="QSpinBox" name="spinBox">
@@ -163,7 +163,7 @@
      </rect>
     </property>
    </widget>
-   <widget class="QComboBox" name="comboBox">
+   <widget class="QComboBox" name="morphCombo">
     <property name="geometry">
      <rect>
       <x>100</x>
@@ -204,7 +204,11 @@
       </widget>
      </item>
      <item>
-      <widget class="QLineEdit" name="MasterFreqEdit"/>
+      <widget class="QLineEdit" name="dbPath">
+       <property name="placeholderText">
+        <string>known morph database path</string>
+       </property>
+      </widget>
      </item>
     </layout>
    </widget>
@@ -226,9 +230,12 @@
       </widget>
      </item>
      <item>
-      <widget class="QLineEdit" name="lineEdit_2">
+      <widget class="QLineEdit" name="frequencyPath">
        <property name="text">
         <string/>
+       </property>
+       <property name="placeholderText">
+        <string>language frequency file</string>
        </property>
       </widget>
      </item>
@@ -256,8 +263,8 @@
    <widget class="QPushButton" name="pushButton">
     <property name="geometry">
      <rect>
-      <x>540</x>
-      <y>320</y>
+      <x>590</x>
+      <y>330</y>
       <width>111</width>
       <height>23</height>
      </rect>
@@ -266,7 +273,7 @@
      <string>update databases</string>
     </property>
    </widget>
-   <widget class="QCheckBox" name="checkBox">
+   <widget class="QCheckBox" name="analyzeFromClipCheck">
     <property name="geometry">
      <rect>
       <x>530</x>
@@ -279,13 +286,46 @@
      <string>analyze from clipboard</string>
     </property>
    </widget>
+   <widget class="QComboBox" name="exportType">
+    <property name="geometry">
+     <rect>
+      <x>590</x>
+      <y>430</y>
+      <width>81</width>
+      <height>22</height>
+     </rect>
+    </property>
+    <item>
+     <property name="text">
+      <string>export CSV</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>export to Anki</string>
+     </property>
+    </item>
+   </widget>
+   <widget class="QCheckBox" name="exportMonolingualCheck">
+    <property name="geometry">
+     <rect>
+      <x>590</x>
+      <y>460</y>
+      <width>121</width>
+      <height>17</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Export Monolingual</string>
+    </property>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1018</width>
+     <width>776</width>
      <height>21</height>
     </rect>
    </property>
@@ -293,7 +333,6 @@
     <property name="title">
      <string>File</string>
     </property>
-    <addaction name="actionProperties"/>
    </widget>
    <widget class="QMenu" name="menuHelp">
     <property name="title">
@@ -306,7 +345,8 @@
     <property name="title">
      <string>Tools</string>
     </property>
-    <addaction name="actionEdit_properties"/>
+    <addaction name="actionProperties_2"/>
+    <addaction name="actionDatabase_Manager"/>
    </widget>
    <addaction name="menuFile"/>
    <addaction name="menuTool"/>
@@ -330,9 +370,14 @@
     <string>Donate</string>
    </property>
   </action>
-  <action name="actionEdit_properties">
+  <action name="actionProperties_2">
    <property name="text">
-    <string>Preferences</string>
+    <string>Properties</string>
+   </property>
+  </action>
+  <action name="actionDatabase_Manager">
+   <property name="text">
+    <string>Database Manager</string>
    </property>
   </action>
  </widget>
