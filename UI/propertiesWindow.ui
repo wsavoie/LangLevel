@@ -23,7 +23,7 @@
     </rect>
    </property>
    <property name="toolTip">
-    <string>use this option to not pick up proper nouns (names) as new vocab</string>
+    <string/>
    </property>
    <property name="statusTip">
     <string/>
@@ -35,7 +35,7 @@
     <enum>QTabWidget::Rounded</enum>
    </property>
    <property name="currentIndex">
-    <number>2</number>
+    <number>1</number>
    </property>
    <property name="elideMode">
     <enum>Qt::ElideNone</enum>
@@ -206,45 +206,49 @@
       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:18pt;&quot;&gt;Set default button&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
      </property>
     </widget>
+    <widget class="QLabel" name="label_8">
+     <property name="geometry">
+      <rect>
+       <x>220</x>
+       <y>240</y>
+       <width>221</width>
+       <height>51</height>
+      </rect>
+     </property>
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Ignored" vsizetype="Ignored">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="text">
+      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:18pt;&quot;&gt;Set tool tips&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_13">
+     <property name="geometry">
+      <rect>
+       <x>250</x>
+       <y>190</y>
+       <width>221</width>
+       <height>51</height>
+      </rect>
+     </property>
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Ignored" vsizetype="Ignored">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="text">
+      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:18pt;&quot;&gt;Set icon&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+     </property>
+    </widget>
    </widget>
    <widget class="QWidget" name="databaseTab">
     <attribute name="title">
      <string>Databases</string>
     </attribute>
-    <widget class="QListView" name="db_list">
-     <property name="geometry">
-      <rect>
-       <x>230</x>
-       <y>20</y>
-       <width>221</width>
-       <height>121</height>
-      </rect>
-     </property>
-     <property name="frameShape">
-      <enum>QFrame::StyledPanel</enum>
-     </property>
-     <property name="frameShadow">
-      <enum>QFrame::Sunken</enum>
-     </property>
-     <property name="midLineWidth">
-      <number>0</number>
-     </property>
-     <property name="horizontalScrollBarPolicy">
-      <enum>Qt::ScrollBarAlwaysOff</enum>
-     </property>
-     <property name="dragEnabled">
-      <bool>true</bool>
-     </property>
-     <property name="movement">
-      <enum>QListView::Static</enum>
-     </property>
-     <property name="wordWrap">
-      <bool>false</bool>
-     </property>
-     <property name="selectionRectVisible">
-      <bool>true</bool>
-     </property>
-    </widget>
     <widget class="QWidget" name="horizontalLayoutWidget_3">
      <property name="geometry">
       <rect>
@@ -257,6 +261,9 @@
      <layout class="QHBoxLayout" name="horizontalLayout_3">
       <item>
        <widget class="QPushButton" name="up_db">
+        <property name="toolTip">
+         <string>Increase load order priority</string>
+        </property>
         <property name="text">
          <string>up</string>
         </property>
@@ -264,6 +271,9 @@
       </item>
       <item>
        <widget class="QPushButton" name="down_db">
+        <property name="toolTip">
+         <string>Lower load order priority</string>
+        </property>
         <property name="text">
          <string>down</string>
         </property>
@@ -271,6 +281,9 @@
       </item>
       <item>
        <widget class="QPushButton" name="add_db">
+        <property name="toolTip">
+         <string>Add item to list</string>
+        </property>
         <property name="text">
          <string>add</string>
         </property>
@@ -278,6 +291,9 @@
       </item>
       <item>
        <widget class="QPushButton" name="del_db">
+        <property name="toolTip">
+         <string>Remove highlighted entry</string>
+        </property>
         <property name="text">
          <string>delete</string>
         </property>
@@ -324,6 +340,9 @@
       </item>
       <item>
        <widget class="QLineEdit" name="dbFolderPath">
+        <property name="toolTip">
+         <string>Folder containing </string>
+        </property>
         <property name="text">
          <string/>
         </property>
@@ -373,6 +392,9 @@
       </item>
       <item>
        <widget class="QLineEdit" name="frequencyPath">
+        <property name="toolTip">
+         <string>Path of language frequency file</string>
+        </property>
         <property name="text">
          <string/>
         </property>
@@ -394,6 +416,98 @@
      </property>
      <property name="text">
       <string>Default frequency list</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_14">
+     <property name="geometry">
+      <rect>
+       <x>50</x>
+       <y>270</y>
+       <width>271</width>
+       <height>51</height>
+      </rect>
+     </property>
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Ignored" vsizetype="Ignored">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="text">
+      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:18pt;&quot;&gt;propagate dbs add TTs&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+     </property>
+    </widget>
+    <widget class="QListWidget" name="db_list">
+     <property name="geometry">
+      <rect>
+       <x>220</x>
+       <y>20</y>
+       <width>221</width>
+       <height>121</height>
+      </rect>
+     </property>
+     <property name="mouseTracking">
+      <bool>false</bool>
+     </property>
+     <property name="frameShape">
+      <enum>QFrame::StyledPanel</enum>
+     </property>
+     <property name="frameShadow">
+      <enum>QFrame::Plain</enum>
+     </property>
+     <property name="midLineWidth">
+      <number>0</number>
+     </property>
+     <property name="editTriggers">
+      <set>QAbstractItemView::EditKeyPressed</set>
+     </property>
+     <property name="dragEnabled">
+      <bool>false</bool>
+     </property>
+     <property name="alternatingRowColors">
+      <bool>false</bool>
+     </property>
+     <property name="selectionBehavior">
+      <enum>QAbstractItemView::SelectItems</enum>
+     </property>
+     <property name="textElideMode">
+      <enum>Qt::ElideNone</enum>
+     </property>
+     <property name="horizontalScrollMode">
+      <enum>QAbstractItemView::ScrollPerItem</enum>
+     </property>
+     <property name="movement">
+      <enum>QListView::Static</enum>
+     </property>
+     <property name="isWrapping" stdset="0">
+      <bool>false</bool>
+     </property>
+     <property name="resizeMode">
+      <enum>QListView::Adjust</enum>
+     </property>
+     <property name="layoutMode">
+      <enum>QListView::SinglePass</enum>
+     </property>
+     <property name="spacing">
+      <number>0</number>
+     </property>
+     <property name="viewMode">
+      <enum>QListView::ListMode</enum>
+     </property>
+     <property name="modelColumn">
+      <number>0</number>
+     </property>
+     <property name="uniformItemSizes">
+      <bool>true</bool>
+     </property>
+     <property name="batchSize">
+      <number>20</number>
+     </property>
+     <property name="selectionRectVisible">
+      <bool>false</bool>
+     </property>
+     <property name="currentRow">
+      <number>-1</number>
      </property>
     </widget>
    </widget>
@@ -426,6 +540,9 @@
         <property name="inputMask">
          <string/>
         </property>
+        <property name="maxLength">
+         <number>36</number>
+        </property>
         <property name="readOnly">
          <bool>false</bool>
         </property>
@@ -450,7 +567,7 @@
      <property name="geometry">
       <rect>
        <x>50</x>
-       <y>170</y>
+       <y>220</y>
        <width>321</width>
        <height>61</height>
       </rect>
@@ -458,8 +575,17 @@
      <layout class="QGridLayout" name="gridLayout">
       <item row="0" column="1">
        <widget class="QLineEdit" name="duo_username">
+        <property name="enabled">
+         <bool>true</bool>
+        </property>
+        <property name="toolTip">
+         <string/>
+        </property>
         <property name="inputMask">
          <string/>
+        </property>
+        <property name="maxLength">
+         <number>100</number>
         </property>
         <property name="readOnly">
          <bool>false</bool>
@@ -487,6 +613,9 @@
         <property name="inputMask">
          <string/>
         </property>
+        <property name="maxLength">
+         <number>100</number>
+        </property>
         <property name="readOnly">
          <bool>false</bool>
         </property>
@@ -506,6 +635,95 @@
        </widget>
       </item>
      </layout>
+    </widget>
+    <widget class="QLineEdit" name="wk_db_name">
+     <property name="geometry">
+      <rect>
+       <x>150</x>
+       <y>150</y>
+       <width>113</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="toolTip">
+      <string>Saves known vocab into a database of the given name. The location is specified by &quot;database folder&quot; in the previous tab </string>
+     </property>
+     <property name="text">
+      <string>wkdb.db</string>
+     </property>
+     <property name="maxLength">
+      <number>50</number>
+     </property>
+     <property name="placeholderText">
+      <string>database name</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="wk_label">
+     <property name="geometry">
+      <rect>
+       <x>50</x>
+       <y>150</y>
+       <width>91</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Wanikani DB Name</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="duo_label">
+     <property name="geometry">
+      <rect>
+       <x>60</x>
+       <y>290</y>
+       <width>91</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Duolingo DB Name</string>
+     </property>
+    </widget>
+    <widget class="QLineEdit" name="duo_db_name">
+     <property name="geometry">
+      <rect>
+       <x>150</x>
+       <y>290</y>
+       <width>113</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="toolTip">
+      <string>Saves known duolingo info into into a database of the given name. The location is specified by &quot;database folder&quot; in the previous tab </string>
+     </property>
+     <property name="text">
+      <string>duo.db</string>
+     </property>
+     <property name="maxLength">
+      <number>50</number>
+     </property>
+     <property name="placeholderText">
+      <string>database name</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_7">
+     <property name="geometry">
+      <rect>
+       <x>70</x>
+       <y>330</y>
+       <width>341</width>
+       <height>51</height>
+      </rect>
+     </property>
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Ignored" vsizetype="Ignored">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="text">
+      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:18pt;&quot;&gt;disable instead of set invisible&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+     </property>
     </widget>
    </widget>
    <widget class="QWidget" name="ankiTab">
