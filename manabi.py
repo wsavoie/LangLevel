@@ -17,6 +17,7 @@ import platform
 #pyuic5 -x manabi.ui -o manabi_ui.py
 
 
+
 class MainWindowUI(manabi_ui.Ui_MainWindow):
     def __init__( self,mainwindow):
         '''Initialize the super class
@@ -25,11 +26,6 @@ class MainWindowUI(manabi_ui.Ui_MainWindow):
         self.mw = mainwindow
 
         # QMainWindow.__init__(self)
-    def errorMsg(self, text):
-        msg = QMessageBox()
-        msg.setWindowTitle("error")
-        msg.setText(text)
-        msg.exec_()
 
     def setupUi(self):
         ''' Setup the UI of the super class, and add here code
@@ -77,11 +73,15 @@ class MainWindowUI(manabi_ui.Ui_MainWindow):
         
         self.minimize_to_tray.setChecked(p['DEFAULT'].getboolean('minimizetotray'))
 
-
+        ##TODO create database from csv, load csv file open up a small editor window to highlight columns to traverse
+        ##TODO readability for a subtitle fi
         '''
             set actions 
         '''
         self.minimize_to_tray.clicked['bool'].connect(lambda: util.on_check('minimizetotray'))
+
+        '''set actions'''
+        self.loaddb.clicked.connect(lambda: self.buttonz())
    
 ######################
 
@@ -91,7 +91,13 @@ class MainWindowUI(manabi_ui.Ui_MainWindow):
         self.actionProperties_2.triggered.connect(self.onProperties)
         self.actionAbout.triggered.connect(self.onAbout)
         self.actionDatabase_Manager.triggered.connect(self.onDatabase_Manager)
-          
+    
+    def buttonz(self):
+        import morphemes
+        import morphemizer
+        mdb=morphemes.MorphDb()
+        mecab=morphemizer.MecabMorphemizer()
+        mdb.load(r'C:\Users\WS\AppData\Roaming\Anki2\main\dbs\known.db')
     def onDatabase_Manager(self):
         database_manager.main(self.mw)
     def onProperties(self):

@@ -4,8 +4,11 @@ import os
 import pickle5 as pickle
 from preferences import p
 from abc import ABC, abstractmethod
-
+import numpy as np
+import pandas as pd
 import re
+
+#TODO I think the morpheme is reading wrong
 def char_set(start, end):
     # type: (str, str) -> set
     return set(chr(c) for c in range(ord(start), ord(end) + 1))
@@ -78,7 +81,8 @@ class Morpheme:
 
     def show(self):  # str
         return '\t'.join([self.norm, self.base, self.inflected, self.read, self.pos, self.subPos])
-    
+    def showList(self):
+        return [self.norm, self.base, self.inflected, self.read, self.pos, self.subPos]
 
 def ms2str(ms):  # [(Morpheme, locs)] -> Str
     return '\n'.join(['%d\t%s' % (len(m[1]), m[0].show()) for m in ms])
@@ -246,6 +250,16 @@ class MorphDb:
                 if not ignoreErrors:
                     raise
         self.analyze()
+        
+    def importPanda(self,dbData,morphemizer,maturity=0):
+        '''import a df with a single column'''
+        #https://stackoverflow.com/questions/16476924/how-to-iterate-over-rows-in-a-dataframe-in-pandas
+        # print(dbData.iloc[:,:])
+        # print(dbData.iloc[:,0].to_string())
+        for line in dbData[0]:
+        #    print(line)
+            ms = getMorphemes(morphemizer, line)
+            self.addMLs((m, TextFile(0, 0, maturity)) for m in ms)
 
     # Serialization
     def show(self):  # Str
@@ -266,7 +280,10 @@ class MorphDb:
 
     def showMs(self):  # Str
         return ms2str(sorted(self.db.items(), key=lambda it: it[0].show()))
-
+    def showMsList(self):
+        # return '\n'.join(['%d\t%s' % (len(m[1]), m[0].show()) for m in ms])
+        return sorted(self.db.items(), key=lambda it: it[0].show())
+        
     def save(self, path):  # FilePath -> IO ()
         par = os.path.split(path)[0]
         if not os.path.exists(par):
@@ -276,12 +293,14 @@ class MorphDb:
         f.close()
 
     def load(self, path):  # FilePath -> m ()
-        #TODO use with here instead, can you return exceptions in with?
+      
+        #TODO use with statement here instead, can you return exceptions in with?
         f = gzip.open(path)
         try:
             db = MorphDBUnpickler(f).load()
             for m, locs in db.items():
                 self.addMLs1(m, locs)
+            print('finished loading')
         except ModuleNotFoundError as e:
             print('load error')
             #TODO FIXME raise error 
@@ -423,6 +442,7 @@ class MorphDb:
                            for k, v in self.posBreakdown.items())
         return 'Total normalized morphemes: %d\nTotal variations: %d\nBy part of speech:\n%s' % (
             self.kCount, self.vCount, posStr)
+    
     ##########################################
     # count db added
     ########################################

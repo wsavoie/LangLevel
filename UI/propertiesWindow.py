@@ -1,7 +1,7 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 
 import sys
-# import ..util
+
 import os
 # from propertiesWindow_ui import Ui_Form
 from .propertiesWindow_ui import Ui_Dialog
@@ -9,8 +9,12 @@ from preferences import p
 
 #TODO fix the line below
 sys.path.append("..") # Adds higher directory to python modules path.
+from util import errorMsg, getPathLE, getPathLW
+import importData
 # from manabi import MainWindowUI
-import util
+
+
+#TODO have language specific secitions in file 
 
 class propertiesWindow(Ui_Dialog):
     def __init__(self,parent=None):
@@ -50,7 +54,7 @@ class propertiesWindow(Ui_Dialog):
         # dbFolderButton
         # dbFolderPath
         
-        self.dbFolderButton.clicked.connect(lambda: [None, getPath(self.dbFolderPath,'location of database folder',True), 
+        self.dbFolderButton.clicked.connect(lambda: [None, getPathLE(self.dbFolderPath,'location of database folder',True), 
         self.setPrefText(self.dbFolderPath,'dbdir')][0])
 
 
@@ -58,7 +62,7 @@ class propertiesWindow(Ui_Dialog):
         # self.dbFolderButton.clicked.connect(lambda le: getPath(self.dbFolderPath,'location of database folder',True))
         # frequencyButton
         # frequencyPath
-        self.frequencyButton.clicked.connect(lambda: [None, getPath(self.frequencyPath,'language frequency file',False,
+        self.frequencyButton.clicked.connect(lambda: [None, getPathLE(self.frequencyPath,'language frequency file',False,
             startPath=os.path.normpath(self.dbFolderPath.text()),filter_='text file (*.txt)'), 
         self.setPrefText(self.frequencyPath,'frequencylist')][0])
         #db_list
@@ -112,6 +116,8 @@ class propertiesWindow(Ui_Dialog):
         self.duo_pass.editingFinished.connect(lambda: self.setPrefText(self.duo_pass,'duolingo_pass'))
         self.duo_db_name.editingFinished.connect(lambda: self.setPrefText(self.duo_db_name,'duo_db_name'))
 
+
+        self.wk_conn.clicked.connect(lambda: self.makeWkDb())
         '''initialize values'''
         #X duo_username
         #X duo_pass
@@ -168,7 +174,7 @@ class propertiesWindow(Ui_Dialog):
         self.tempPrefs['database_union'] = self.getDbString(self.db_list)
 
     def addDb(self):
-        paths= getPath2(self.db_list,'db files',False,startPath=os.path.normpath(self.dbFolderPath.text()), filter_='Database file(s) (*.db)')
+        paths= getPathLW(self.db_list,'db files',False,startPath=os.path.normpath(self.dbFolderPath.text()), filter_='Database file(s) (*.db)')
         print(paths)
         for path in paths:
             self.db_list.addItem(os.path.normpath(path))
@@ -191,7 +197,18 @@ class propertiesWindow(Ui_Dialog):
             self.tempPrefs['database_union']=self.getDbString(self.db_list)
         else:
             return  
-    
+    def makeWkDb(self):
+        import morphemes
+        import morphemizer
+        mdb=morphemes.MorphDb()
+        mecab=morphemizer.MecabMorphemizer()
+        wkLevel=importData.getWKLevel()
+        errorMsg(f'Hi error, {wkLevel}')
+        wkData=importData.getWKData(wkLevel)
+    # #make wk.db file
+        mdb.importPanda(wkData,mecab)
+        # mdb.importFile(config.DBDIR.format('wanikaniVocab.txt'),mecab,maturity=21)
+        mdb.save(os.path.join(p['DEFAULT']['dbdir'],p['DEFAULT']['wk_db_name'])) #only need this line 
     def standardButtonPress(self, buttonText):
         '''apply or close button press'''
         # QtWidgets.QPushButton.getText
@@ -226,33 +243,6 @@ class propertiesWindow(Ui_Dialog):
     def checkAction(self,obj,prefName):
         self.tempPrefs[prefName]=obj.isChecked()
         # self.minimize_to_tray.clicked['bool'].connect(lambda: util.on_check('minimizetotray'))
-
-
-def getPath(lineEdit, caption, open_directory=False,startPath='',filter_=''):  # LineEdit -> GUI ()
-    '''get database files from explorer add them to lineEdit'''
-    try:
-        if open_directory:
-            path =  QtWidgets.QFileDialog.getExistingDirectory(caption=caption, directory=startPath,
-                        options=QtWidgets.QFileDialog.ShowDirsOnly)
-        else:
-            path = QtWidgets.QFileDialog.getOpenFileName(caption=caption, directory=startPath, filter=filter_)[0]
-    except Exception as e:
-        print(e)
-        return
-
-    if path:
-        lineEdit.setText(path)
-
-def getPath2(listWid,caption, open_directory=False,startPath='',filter_=''):  # LineEdit -> GUI ()
-    '''get database files from explorer for use when adding to line widget'''
-    try:
-        paths = QtWidgets.QFileDialog.getOpenFileNames(caption=caption, directory=startPath, filter=filter_)[0]
-        # print(paths)
-    except Exception as e:
-        print(e)
-        return
-    
-    return paths
 
 
 if __name__ == "__main__":

@@ -35,6 +35,8 @@ class pfile(configparser.ConfigParser):
             'externalmorphs'    : '%(dbdir)s\\external.db',
             'inputpath'         : 'C:\\Users\\WS\\Desktop\\blah\\kiki\\chbk1\\ch07',
             'morphman_name'     : 'MM', #usually is 900801631
+            'database_union'    :  '',
+            
             
             #numerical values
             'min_master_freq'   : '0',
@@ -68,8 +70,9 @@ class pfile(configparser.ConfigParser):
             'wk_api_key'        : '',
             'duolingo_user'     : '',
             'duolingo_pass'     : '',
-            'shortcut'            : 'Ctrl+F3'
-
+            'shortcut'          : 'Ctrl+F3',
+            'wk_db_name'        : '',
+            'duo_db_name'        : ''
             }
         }
     def write_prefs(self):
