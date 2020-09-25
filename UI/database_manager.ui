@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>643</width>
+    <width>882</width>
     <height>498</height>
    </rect>
   </property>
@@ -195,75 +195,184 @@
     <string>Save results to db</string>
    </property>
   </widget>
-  <widget class="QTableWidget" name="tableWidget">
+  <widget class="QComboBox" name="langBox">
    <property name="geometry">
     <rect>
-     <x>190</x>
-     <y>30</y>
-     <width>241</width>
-     <height>401</height>
+     <x>10</x>
+     <y>470</y>
+     <width>69</width>
+     <height>22</height>
     </rect>
    </property>
-   <property name="cornerButtonEnabled">
-    <bool>true</bool>
-   </property>
-   <property name="rowCount">
-    <number>0</number>
-   </property>
-   <attribute name="verticalHeaderShowSortIndicator" stdset="0">
-    <bool>false</bool>
-   </attribute>
   </widget>
-  <widget class="QLabel" name="label">
+  <widget class="QRadioButton" name="fullInfo">
    <property name="geometry">
     <rect>
-     <x>490</x>
-     <y>10</y>
-     <width>47</width>
-     <height>13</height>
+     <x>20</x>
+     <y>440</y>
+     <width>82</width>
+     <height>17</height>
     </rect>
    </property>
    <property name="text">
-    <string>Summary</string>
+    <string>Full Info</string>
+   </property>
+   <property name="checked">
+    <bool>true</bool>
    </property>
   </widget>
-  <widget class="QTextBrowser" name="textBrowser">
+  <widget class="QRadioButton" name="onlyMorphs">
    <property name="geometry">
     <rect>
-     <x>440</x>
-     <y>30</y>
-     <width>161</width>
-     <height>401</height>
-    </rect>
-   </property>
-  </widget>
-  <widget class="QLabel" name="label_2">
-   <property name="geometry">
-    <rect>
-     <x>270</x>
-     <y>10</y>
-     <width>71</width>
-     <height>16</height>
+     <x>90</x>
+     <y>440</y>
+     <width>82</width>
+     <height>17</height>
     </rect>
    </property>
    <property name="text">
-    <string>Database Info</string>
+    <string>Only Morphs</string>
    </property>
-   <property name="scaledContents">
-    <bool>true</bool>
+  </widget>
+  <widget class="QWidget" name="verticalLayoutWidget">
+   <property name="geometry">
+    <rect>
+     <x>630</x>
+     <y>40</y>
+     <width>251</width>
+     <height>401</height>
+    </rect>
    </property>
-   <property name="wordWrap">
-    <bool>false</bool>
+   <layout class="QVBoxLayout" name="verticalLayout">
+    <item>
+     <widget class="QLabel" name="label">
+      <property name="text">
+       <string>Summary</string>
+      </property>
+      <property name="scaledContents">
+       <bool>false</bool>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QLabel" name="summaryLabel">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
+        <horstretch>50</horstretch>
+        <verstretch>11</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QTableWidget" name="posTable">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
+        <horstretch>47</horstretch>
+        <verstretch>103</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="sizeAdjustPolicy">
+       <enum>QAbstractScrollArea::AdjustToContents</enum>
+      </property>
+      <property name="editTriggers">
+       <set>QAbstractItemView::NoEditTriggers</set>
+      </property>
+      <attribute name="verticalHeaderVisible">
+       <bool>false</bool>
+      </attribute>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QWidget" name="verticalLayoutWidget_2">
+   <property name="geometry">
+    <rect>
+     <x>180</x>
+     <y>60</y>
+     <width>431</width>
+     <height>381</height>
+    </rect>
    </property>
-   <property name="margin">
-    <number>0</number>
-   </property>
-   <property name="indent">
-    <number>0</number>
-   </property>
-   <property name="openExternalLinks">
-    <bool>false</bool>
-   </property>
+   <layout class="QVBoxLayout" name="verticalLayout_2">
+    <item>
+     <widget class="QLabel" name="label_2">
+      <property name="text">
+       <string>Database Info</string>
+      </property>
+      <property name="scaledContents">
+       <bool>true</bool>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
+      <property name="wordWrap">
+       <bool>false</bool>
+      </property>
+      <property name="margin">
+       <number>0</number>
+      </property>
+      <property name="indent">
+       <number>0</number>
+      </property>
+      <property name="openExternalLinks">
+       <bool>false</bool>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QTableWidget" name="dbTable">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Preferred" vsizetype="Minimum">
+        <horstretch>206</horstretch>
+        <verstretch>1</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="midLineWidth">
+       <number>0</number>
+      </property>
+      <property name="sizeAdjustPolicy">
+       <enum>QAbstractScrollArea::AdjustToContents</enum>
+      </property>
+      <property name="editTriggers">
+       <set>QAbstractItemView::NoEditTriggers</set>
+      </property>
+      <property name="dragDropOverwriteMode">
+       <bool>false</bool>
+      </property>
+      <property name="alternatingRowColors">
+       <bool>false</bool>
+      </property>
+      <property name="selectionMode">
+       <enum>QAbstractItemView::ExtendedSelection</enum>
+      </property>
+      <property name="selectionBehavior">
+       <enum>QAbstractItemView::SelectItems</enum>
+      </property>
+      <property name="showGrid">
+       <bool>true</bool>
+      </property>
+      <property name="cornerButtonEnabled">
+       <bool>true</bool>
+      </property>
+      <attribute name="horizontalHeaderCascadingSectionResizes">
+       <bool>true</bool>
+      </attribute>
+      <attribute name="horizontalHeaderDefaultSectionSize">
+       <number>50</number>
+      </attribute>
+      <attribute name="verticalHeaderShowSortIndicator" stdset="0">
+       <bool>false</bool>
+      </attribute>
+     </widget>
+    </item>
+   </layout>
   </widget>
  </widget>
  <resources/>
